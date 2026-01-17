@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ToggleTheme from './ToggleTheme';
 const Navbar = () => {
   return (
    <div className="navbar bg-base-300 shadow-sm">
@@ -7,6 +7,7 @@ const Navbar = () => {
           <a className="btn btn-ghost text-xl">👨‍💻DevTinder</a>
         </div>
         <div className="flex gap-2">
+          <ToggleTheme/>
           <div className="dropdown dropdown-end mx-4">
             <div
               tabIndex={0}
@@ -38,7 +39,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          
         </div>
+        
       </div>
   )
 }
