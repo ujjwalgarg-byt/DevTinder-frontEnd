@@ -3,7 +3,7 @@ import React from "react";
 const UserCard = ({user}) => {
     console.log(user);
     
-    const {firstName,lastName,photoUrl,about} = user;
+    const {firstName,lastName,photoUrl,about,age,gender} = user;
   return (
     
       <div className="card bg-base-300 w-96  shadow-sm">
@@ -17,6 +17,7 @@ const UserCard = ({user}) => {
           <h2 className="card-title">
             {firstName+" "+lastName}
           </h2>
+          {age&&gender&&<p>{age + ", " + gender}</p>}
           <p>
             {about}
           </p>
