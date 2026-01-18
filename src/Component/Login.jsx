@@ -9,7 +9,7 @@ const Login = () => {
   const [password,setPassword]=useState("Ujjwal@120");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [error,setError] = useState("");
   const handleLogin=async()=>{
     try{    
     const res = await axios.post( BASE_URL+"/logIn",{
@@ -19,6 +19,7 @@ const Login = () => {
     dispatch(addUser(res.data))
     return navigate("/");
     }catch(err){
+      setError(err?.response?.data|| "Something went wrong");
       console.error(err);
       
     }
@@ -49,7 +50,7 @@ const Login = () => {
             placeholder="Password"
             onChange={(e)=>{ setPassword(e.target.value)}}
           />
-
+          <p className="text-red-500">{error}</p>
           <button className="btn btn-neutral mt-6 w-full" onClick={handleLogin}>Login</button>
         </fieldset>
       </div>
