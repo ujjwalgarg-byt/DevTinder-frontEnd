@@ -1,13 +1,22 @@
-import React from 'react'
-import ToggleTheme from './ToggleTheme';
+import React from "react";
+import ToggleTheme from "./ToggleTheme";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const Navbar = () => {
+  const user = useSelector((store) => store.user);
+  console.log(user);
+
   return (
-   <div className="navbar bg-base-300 shadow-sm">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">👨‍💻DevTinder</a>
-        </div>
+    <div className="navbar bg-base-300 shadow-sm">
+      <div className="flex-1">
+        <Link to="/" className="btn btn-ghost text-xl">👨‍💻DevTinder</Link>
+      </div>
+      
+      
         <div className="flex gap-2">
-          <ToggleTheme/>
+          <ToggleTheme />
+          {user && <>
+          <span className="text-sm font-medium my-2.5">Welcome, {user.firstName}</span>
           <div className="dropdown dropdown-end mx-4">
             <div
               tabIndex={0}
@@ -16,8 +25,8 @@ const Navbar = () => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  alt="user photo"
+                  src={user.photoUrl}
                 />
               </div>
             </div>
@@ -26,10 +35,10 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
@@ -39,11 +48,11 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          
+          </>}
         </div>
-        
-      </div>
-  )
-}
+      
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;
