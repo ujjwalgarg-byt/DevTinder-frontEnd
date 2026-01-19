@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [error,setError] = useState("");
   const handleLogin=async()=>{
+    setError("");
     try{    
     const res = await axios.post( BASE_URL+"/logIn",{
           emailId,password
